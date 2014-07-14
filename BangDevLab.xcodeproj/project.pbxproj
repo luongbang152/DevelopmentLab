@@ -13,6 +13,7 @@
 		8A1647971973ED2C006F2F0C /* BangDevLabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1647961973ED2C006F2F0C /* BangDevLabTests.swift */; };
 		8A1647A11973EF08006F2F0C /* LBFlatUIColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1647A01973EF08006F2F0C /* LBFlatUIColorViewController.swift */; };
 		8A1647A51973EFAC006F2F0C /* FlatUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1647A41973EFAC006F2F0C /* FlatUIColor.swift */; };
+		8AF00438197410AD00E43A4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF00437197410AD00E43A4A /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		8A1647961973ED2C006F2F0C /* BangDevLabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BangDevLabTests.swift; sourceTree = "<group>"; };
 		8A1647A01973EF08006F2F0C /* LBFlatUIColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LBFlatUIColorViewController.swift; path = Controller/LBFlatUIColorViewController.swift; sourceTree = "<group>"; };
 		8A1647A41973EFAC006F2F0C /* FlatUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlatUIColor.swift; path = Lib/FlatUIColor.swift; sourceTree = "<group>"; };
+		8AF00437197410AD00E43A4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AF00438197410AD00E43A4A /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +62,7 @@
 		8A1647751973ED2B006F2F0C = {
 			isa = PBXGroup;
 			children = (
+				8AF00437197410AD00E43A4A /* QuartzCore.framework */,
 				8A1647801973ED2C006F2F0C /* BangDevLab */,
 				8A1647931973ED2C006F2F0C /* BangDevLabTests */,
 				8A16477F1973ED2C006F2F0C /* Products */,
@@ -421,6 +425,7 @@
 				8A16479C1973ED2C006F2F0C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8A16479D1973ED2C006F2F0C /* Build configuration list for PBXNativeTarget "BangDevLabTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +434,7 @@
 				8A16479F1973ED2C006F2F0C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
