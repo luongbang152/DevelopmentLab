@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8A1647841973ED2C006F2F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1647831973ED2C006F2F0C /* AppDelegate.swift */; };
-		8A1647861973ED2C006F2F0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1647851973ED2C006F2F0C /* ViewController.swift */; };
 		8A1647891973ED2C006F2F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A1647871973ED2C006F2F0C /* Main.storyboard */; };
 		8A16478B1973ED2C006F2F0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A16478A1973ED2C006F2F0C /* Images.xcassets */; };
 		8A1647971973ED2C006F2F0C /* BangDevLabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1647961973ED2C006F2F0C /* BangDevLabTests.swift */; };
+		8A1647A11973EF08006F2F0C /* LBFlatUIColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1647A01973EF08006F2F0C /* LBFlatUIColorViewController.swift */; };
+		8A1647A51973EFAC006F2F0C /* FlatUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1647A41973EFAC006F2F0C /* FlatUIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,12 +29,13 @@
 		8A16477E1973ED2C006F2F0C /* BangDevLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BangDevLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A1647821973ED2C006F2F0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A1647831973ED2C006F2F0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8A1647851973ED2C006F2F0C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8A1647881973ED2C006F2F0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8A16478A1973ED2C006F2F0C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8A1647901973ED2C006F2F0C /* BangDevLabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BangDevLabTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A1647951973ED2C006F2F0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A1647961973ED2C006F2F0C /* BangDevLabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BangDevLabTests.swift; sourceTree = "<group>"; };
+		8A1647A01973EF08006F2F0C /* LBFlatUIColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LBFlatUIColorViewController.swift; path = Controller/LBFlatUIColorViewController.swift; sourceTree = "<group>"; };
+		8A1647A41973EFAC006F2F0C /* FlatUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlatUIColor.swift; path = Lib/FlatUIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +77,9 @@
 		8A1647801973ED2C006F2F0C /* BangDevLab */ = {
 			isa = PBXGroup;
 			children = (
+				8A1647A31973EF16006F2F0C /* Lib */,
+				8A1647A21973EF0D006F2F0C /* Controller */,
 				8A1647831973ED2C006F2F0C /* AppDelegate.swift */,
-				8A1647851973ED2C006F2F0C /* ViewController.swift */,
 				8A1647871973ED2C006F2F0C /* Main.storyboard */,
 				8A16478A1973ED2C006F2F0C /* Images.xcassets */,
 				8A1647811973ED2C006F2F0C /* Supporting Files */,
@@ -107,6 +110,22 @@
 				8A1647951973ED2C006F2F0C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8A1647A21973EF0D006F2F0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8A1647A01973EF08006F2F0C /* LBFlatUIColorViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		8A1647A31973EF16006F2F0C /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				8A1647A41973EFAC006F2F0C /* FlatUIColor.swift */,
+			);
+			name = Lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,8 +227,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A1647861973ED2C006F2F0C /* ViewController.swift in Sources */,
+				8A1647A51973EFAC006F2F0C /* FlatUIColor.swift in Sources */,
 				8A1647841973ED2C006F2F0C /* AppDelegate.swift in Sources */,
+				8A1647A11973EF08006F2F0C /* LBFlatUIColorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,8 +346,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = BangDevLab/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -337,8 +359,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = BangDevLab/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
