@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="csV-D7-M5X">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
@@ -49,6 +50,23 @@
                                             <segue destination="vtF-Pw-un0" kind="show" id="4Xx-fx-Can"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="DV0-4b-ZXK" style="IBUITableViewCellStyleDefault" id="7rv-B4-nPx">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7rv-B4-nPx" id="mfS-Q7-d8m">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="UIKit Dynamics 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DV0-4b-ZXK">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Fih-lF-cS4" kind="show" id="gGq-oW-FRm"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -93,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8l-zp-E0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="871" y="-245"/>
+            <point key="canvasLocation" x="-509" y="767"/>
         </scene>
         <!--FlatUI Color2 View Controller-->
         <scene sceneID="jWU-gj-Qre">
@@ -119,7 +137,25 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="urs-Wt-H5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="871" y="379"/>
+            <point key="canvasLocation" x="-137" y="767"/>
+        </scene>
+        <!--Dynamic1 View Controller-->
+        <scene sceneID="uWA-Ou-EUX">
+            <objects>
+                <viewController id="Fih-lF-cS4" customClass="LBDynamic1ViewController" customModule="BangDevLab" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3r7-lA-PjA"/>
+                        <viewControllerLayoutGuide type="bottom" id="uud-V0-xXF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GlQ-nD-Ou0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nbc-lN-qmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="238" y="767"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qAs-s0-Lp1">

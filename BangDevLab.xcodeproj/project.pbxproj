@@ -13,7 +13,9 @@
 		8A1647971973ED2C006F2F0C /* BangDevLabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1647961973ED2C006F2F0C /* BangDevLabTests.swift */; };
 		8A1647A11973EF08006F2F0C /* LBFlatUIColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1647A01973EF08006F2F0C /* LBFlatUIColorViewController.swift */; };
 		8A1647A51973EFAC006F2F0C /* FlatUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1647A41973EFAC006F2F0C /* FlatUIColor.swift */; };
+		8A65725E1975118700D9F81C /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A65725D1975118700D9F81C /* CoreMotion.framework */; };
 		8AA4395219742FF000CD574C /* LBFlatUIColor2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA4395119742FF000CD574C /* LBFlatUIColor2ViewController.swift */; };
+		8ACD7A2F197502C900AD46EC /* LBDynamic1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACD7A2E197502C900AD46EC /* LBDynamic1ViewController.swift */; };
 		8AF00438197410AD00E43A4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF00437197410AD00E43A4A /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +40,9 @@
 		8A1647961973ED2C006F2F0C /* BangDevLabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BangDevLabTests.swift; sourceTree = "<group>"; };
 		8A1647A01973EF08006F2F0C /* LBFlatUIColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LBFlatUIColorViewController.swift; path = Controller/LBFlatUIColorViewController.swift; sourceTree = "<group>"; };
 		8A1647A41973EFAC006F2F0C /* FlatUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlatUIColor.swift; path = Lib/FlatUIColor.swift; sourceTree = "<group>"; };
+		8A65725D1975118700D9F81C /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		8AA4395119742FF000CD574C /* LBFlatUIColor2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LBFlatUIColor2ViewController.swift; path = Controller/LBFlatUIColor2ViewController.swift; sourceTree = "<group>"; };
+		8ACD7A2E197502C900AD46EC /* LBDynamic1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LBDynamic1ViewController.swift; path = Controller/LBDynamic1ViewController.swift; sourceTree = "<group>"; };
 		8AF00437197410AD00E43A4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A65725E1975118700D9F81C /* CoreMotion.framework in Frameworks */,
 				8AF00438197410AD00E43A4A /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +69,7 @@
 		8A1647751973ED2B006F2F0C = {
 			isa = PBXGroup;
 			children = (
+				8A65725D1975118700D9F81C /* CoreMotion.framework */,
 				8AF00437197410AD00E43A4A /* QuartzCore.framework */,
 				8A1647801973ED2C006F2F0C /* BangDevLab */,
 				8A1647931973ED2C006F2F0C /* BangDevLabTests */,
@@ -123,6 +129,7 @@
 			children = (
 				8A1647A01973EF08006F2F0C /* LBFlatUIColorViewController.swift */,
 				8AA4395119742FF000CD574C /* LBFlatUIColor2ViewController.swift */,
+				8ACD7A2E197502C900AD46EC /* LBDynamic1ViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -238,6 +245,7 @@
 				8A1647A51973EFAC006F2F0C /* FlatUIColor.swift in Sources */,
 				8A1647841973ED2C006F2F0C /* AppDelegate.swift in Sources */,
 				8A1647A11973EF08006F2F0C /* LBFlatUIColorViewController.swift in Sources */,
+				8ACD7A2F197502C900AD46EC /* LBDynamic1ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
