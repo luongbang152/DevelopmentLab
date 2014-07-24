@@ -16,7 +16,17 @@ import UIKit
 
 extension UIColor {
     
+    // colorize from hex
+    class func colorize(hex: Int, alpha: Double = 1.0) -> UIColor {
+        let red = Double((hex & 0xFF0000) >> 16) / 255.0
+        let green = Double((hex & 0xFF00) >> 8) / 255.0
+        let blue = Double((hex & 0xFF)) / 255.0
+        return UIColor( red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha:CGFloat(alpha) )
+    }
+    
+    // flat UI color
     class func flatTurquoiseColor() -> UIColor {
+        
         return UIColor(red: 26.0/255.0, green:  188.0/255.0, blue:  156.0/255.0, alpha: 1.0)
     }
     class func flatGreenSeaColor() -> UIColor {

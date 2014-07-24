@@ -93,7 +93,7 @@ class LBDynamic1ViewController: UIViewController, UICollisionBehaviorDelegate {
         _motionManager?.startDeviceMotionUpdatesToQueue(_motionQueue, withHandler: { (data: CMDeviceMotion!, error: NSError!) in
             var gravity = data.gravity
             dispatch_async(dispatch_get_main_queue(), {
-                weakGravity!.gravityDirection = CGVectorMake(gravity.x, -gravity.y)
+                weakGravity!.gravityDirection = CGVectorMake(CGFloat(gravity.x), -CGFloat(gravity.y))
             })
         })
     }

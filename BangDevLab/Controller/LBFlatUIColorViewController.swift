@@ -11,7 +11,7 @@ import QuartzCore
 
 class LBFlatUIColorViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet var _scrollView : UIScrollView
+    @IBOutlet var _scrollView : UIScrollView!
     
     init(coder aDecoder: NSCoder!)  {
         super.init(coder: aDecoder)
