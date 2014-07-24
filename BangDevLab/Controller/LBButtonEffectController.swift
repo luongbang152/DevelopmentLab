@@ -11,14 +11,12 @@ import QuartzCore
 
 class LBButtonEffectController: UIViewController {
     
-    var _button : UIButton!
+    var _button1 : UIButton!
+    var _button2 : UIButton!
     
-    private var topLine : CAShapeLayer = CAShapeLayer()
-    private var middleLine : CAShapeLayer = CAShapeLayer()
-    private var bottomLine : CAShapeLayer = CAShapeLayer()
-    
-    private var lineWidth : CGFloat?
-    private var lineHeight : CGFloat?
+    private var lineArr = [ UIButton : [CAShapeLayer] ]()
+    private var lineWidth : CGFloat!
+    private var lineHeight : CGFloat!
     
     init(coder aDecoder: NSCoder!)  {
         super.init(coder: aDecoder)
@@ -27,28 +25,41 @@ class LBButtonEffectController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        _button = UIButton(frame: CGRectMake(0, 0, 100, 100))
-        _button.backgroundColor = UIColor.blackColor()
-        _button.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2)
-        _button.addTarget(self, action: "tappedButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        _button1 = UIButton(frame: CGRectMake(0, 0, 100, 100))
+        _button1.backgroundColor = UIColor.blackColor()
+        _button1.center = CGPointMake(self.view.bounds.size.width/2, 150)
+        _button1.addTarget(self, action: "tappedButton1:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.view.addSubview(_button)
+        self.view.addSubview(_button1)
         
-        setUpHamburger(_button)
+        _button2 = UIButton(frame: CGRectMake(0, 0, 100, 100))
+        _button2.backgroundColor = UIColor.flatBelizeHoleColor()
+        _button2.center = CGPointMake(self.view.bounds.size.width/2, _button1.center.y + 150)
+        _button2.addTarget(self, action: "tappedButton2:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.view.addSubview(_button2)
+        
+        lineWidth = 50
+        lineHeight = lineWidth / 6
+        setUpHamburger(_button1)
+        setUpHamburger(_button2)
     }
     
     func setUpHamburger(view : UIButton) {
         
-        lineWidth = view.frame.size.width / 2
-        lineHeight = lineWidth! / 6
+        var topLine = CAShapeLayer()
+        var middleLine = CAShapeLayer()
+        var bottomLine = CAShapeLayer()
         
-        view.layer.addSublayer(createLayer(self.topLine, width: lineWidth!, height: lineHeight!))
-        view.layer.addSublayer(createLayer(self.middleLine, width: lineWidth!, height: lineHeight!))
-        view.layer.addSublayer(createLayer(self.bottomLine, width: lineWidth!, height: lineHeight!))
+        view.layer.addSublayer(createLayer(topLine, width: lineWidth!, height: lineHeight!))
+        view.layer.addSublayer(createLayer(middleLine, width: lineWidth!, height: lineHeight!))
+        view.layer.addSublayer(createLayer(bottomLine, width: lineWidth!, height: lineHeight!))
         
         topLine.position = CGPointMake(view.frame.size.width/2,  view.frame.size.height/2 - lineHeight!/2 - 10)
         middleLine.position = CGPointMake(view.frame.size.width/2, view.frame.size.height/2)
         bottomLine.position = CGPointMake(view.frame.size.width/2, view.frame.size.height/2 + lineHeight!/2 + 10)
+        
+        lineArr[view] = [ topLine, middleLine, bottomLine ]
     }
     
     func createLayer(layer : CAShapeLayer, width : CGFloat, height : CGFloat) -> CAShapeLayer {
@@ -67,37 +78,56 @@ class LBButtonEffectController: UIViewController {
         return layer
     }
     
-    func tappedButton(sender : AnyObject?) {
-        NSLog("tapped")
+    func animationPath(startPoint: CGPoint, endPoint: CGPoint, controlPoint: CGPoint) -> UIBezierPath {
+        var bezierCurvePath = UIBezierPath()
+        bezierCurvePath.moveToPoint(startPoint)
+        bezierCurvePath.addQuadCurveToPoint(endPoint, controlPoint: controlPoint)
+        return bezierCurvePath
+    }
+    
+    func tappedButton1(sender : AnyObject?) {
         
         var button = sender as UIButton
         
+        var tempArr = lineArr[button] as [CAShapeLayer]
+        var topLine = tempArr[0]
+        var middleLine = tempArr[1]
+        var bottomLine = tempArr[2]
+        
         var topPath : UIBezierPath?
         var bottomPath : UIBezierPath?
+        var topPathEndPoint : CGPoint?
+        var bottomPathEndPoint : CGPoint?
+        
+        var controlPoint = CGPointMake(button.frame.size.width/2 + 15, button.frame.size.height/2)
         
         if button.selected {
-            button.backgroundColor = UIColor.blackColor()
             
-            topPath =  animationPath(CGPointMake(button.frame.size.width/2 - 10, button.frame.size.height/2 + lineHeight!/2 + 11), endPoint: CGPointMake(button.frame.size.width/2, button.frame.size.height/2 - lineHeight!/2 - 10), controlPoint: self.middleLine.position)
-            bottomPath = animationPath(CGPointMake(button.frame.size.width/2 - 10, button.frame.size.height/2 - lineHeight!/2 - 11), endPoint: CGPointMake(button.frame.size.width/2, button.frame.size.height/2 + lineHeight!/2 + 10), controlPoint: self.middleLine.position)
+            topPathEndPoint = CGPointMake(button.frame.size.width/2, button.frame.size.height/2 - lineHeight!/2 - 10)
+            bottomPathEndPoint = CGPointMake(button.frame.size.width/2, button.frame.size.height/2 + lineHeight!/2 + 10)
+            
+            topPath =  animationPath(CGPointMake(button.frame.size.width/2 - 10, button.frame.size.height/2 + lineHeight!/2 + 11), endPoint: topPathEndPoint!, controlPoint: controlPoint)
+            bottomPath = animationPath(CGPointMake(button.frame.size.width/2 - 10, button.frame.size.height/2 - lineHeight!/2 - 11), endPoint: bottomPathEndPoint!, controlPoint: controlPoint)
             
         } else {
-            button.backgroundColor = UIColor.grayColor()
             
-            topPath =  animationPath(CGPointMake(button.frame.size.width/2, button.frame.size.height/2 - lineHeight!/2 - 10), endPoint: CGPointMake(button.frame.size.width/2 - 10, button.frame.size.height/2 + lineHeight!/2 + 11), controlPoint: self.middleLine.position)
-            bottomPath = animationPath(CGPointMake(button.frame.size.width/2, button.frame.size.height/2 + lineHeight!/2 + 10), endPoint: CGPointMake(button.frame.size.width/2 - 10, button.frame.size.height/2 - lineHeight!/2 - 11), controlPoint: self.middleLine.position)
+            topPathEndPoint = CGPointMake(button.frame.size.width/2 - 10, button.frame.size.height/2 + lineHeight!/2 + 11)
+            bottomPathEndPoint = CGPointMake(button.frame.size.width/2 - 10, button.frame.size.height/2 - lineHeight!/2 - 11)
+            
+            topPath =  animationPath(CGPointMake(button.frame.size.width/2, button.frame.size.height/2 - lineHeight!/2 - 10), endPoint: topPathEndPoint!, controlPoint: controlPoint)
+            bottomPath = animationPath(CGPointMake(button.frame.size.width/2, button.frame.size.height/2 + lineHeight!/2 + 10), endPoint: bottomPathEndPoint!, controlPoint: controlPoint)
         }
         
         CATransaction.begin()
-        CATransaction.setAnimationDuration(0.4)
+        CATransaction.setAnimationDuration(0.5)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(controlPoints: 0.4, 0.0, 0.2, 1.0))
         
         // animate middle line
         var middleAnimation = CAKeyframeAnimation(keyPath: "transform.rotation")
         middleAnimation.values = button.selected ? [ M_PI, 0 ] : [ 0, M_PI]
         
-        self.middleLine.addAnimation(middleAnimation, forKey: "rotate")
-        self.middleLine.setValue(button.selected ? 0 : M_PI, forKeyPath: "transform.rotation")
+        middleLine.addAnimation(middleAnimation, forKey: "rotate")
+        middleLine.setValue(button.selected ? 0 : M_PI, forKeyPath: "transform.rotation")
         
         // animate top line
         
@@ -108,13 +138,12 @@ class LBButtonEffectController: UIViewController {
         
         var topAnimationPosition = CAKeyframeAnimation(keyPath: "position")
         topAnimationPosition.path = topPath!.CGPath
+        topAnimationPosition.removedOnCompletion = false
+        topAnimationPosition.fillMode = kCAFillModeForwards
         
-        var topAnimation = CAAnimationGroup()
-        topAnimation.animations = [topAnimationRotation, topAnimationPosition]
-        
-        self.topLine.addAnimation(topAnimation, forKey: "animation")
-        self.topLine.setValue(button.selected ? 0 : M_PI*5/4, forKeyPath: "transform.rotation")
-        self.topLine.setValue(NSValue(CGPoint: button.selected ? CGPointMake(button.frame.size.width/2, button.frame.size.height/2 - lineHeight!/2 - 10) : CGPointMake(button.frame.size.width/2 - 10, button.frame.size.height/2 + lineHeight!/2 + 11)), forKeyPath: "position")
+        topLine.addAnimation(topAnimationRotation, forKey: "animation")
+        topLine.addAnimation(topAnimationPosition, forKey: "animation2")
+        topLine.setValue(button.selected ? 0 : M_PI*5/4, forKeyPath: "transform.rotation")
 
         // animate bottom line
         
@@ -125,24 +154,101 @@ class LBButtonEffectController: UIViewController {
         
         var bottomAnimationPosition = CAKeyframeAnimation(keyPath: "position")
         bottomAnimationPosition.path = bottomPath!.CGPath
+        bottomAnimationPosition.removedOnCompletion = false
+        bottomAnimationPosition.fillMode = kCAFillModeForwards
         
-        var bottomAnimation = CAAnimationGroup()
-        bottomAnimation.animations = [bottomAnimationRotation, bottomAnimationPosition]
-        
-        self.bottomLine.addAnimation(bottomAnimation, forKey: "animation2")
-        self.bottomLine.setValue(button.selected ? 0 : -M_PI*5/4, forKeyPath: "transform.rotation")
-        self.bottomLine.setValue(NSValue(CGPoint: button.selected ? CGPointMake(button.frame.size.width/2, button.frame.size.height/2 + lineHeight!/2 + 10) : CGPointMake(button.frame.size.width/2 - 10, button.frame.size.height/2 - lineHeight!/2 - 11)), forKeyPath: "position")
+        bottomLine.addAnimation(bottomAnimationRotation, forKey: "animation")
+        bottomLine.addAnimation(bottomAnimationPosition, forKey: "animation")
+        bottomLine.setValue(button.selected ? 0 : -M_PI*5/4, forKeyPath: "transform.rotation")
         
         CATransaction.commit()
         
         button.selected = !button.selected
     }
     
-    func animationPath(startPoint: CGPoint, endPoint: CGPoint, controlPoint: CGPoint) -> UIBezierPath {
-        var bezierCurvePath = UIBezierPath()
-        bezierCurvePath.moveToPoint(startPoint)
-        bezierCurvePath.addQuadCurveToPoint(endPoint, controlPoint: controlPoint)
+    func tappedButton2(sender : AnyObject?) {
         
-        return bezierCurvePath
+        var button = sender as UIButton
+        
+        var tempArr = lineArr[button] as [CAShapeLayer]
+        var topLine = tempArr[0]
+        var middleLine = tempArr[1]
+        var bottomLine = tempArr[2]
+        
+        var topPath : UIBezierPath?
+        var bottomPath : UIBezierPath?
+        var topPathEndPoint : CGPoint?
+        var bottomPathEndPoint : CGPoint?
+        
+        if button.selected {
+            
+            topPathEndPoint = CGPointMake(button.frame.size.width/2, button.frame.size.height/2 - lineHeight!/2 - 10)
+            bottomPathEndPoint = CGPointMake(button.frame.size.width/2, button.frame.size.height/2 + lineHeight!/2 + 10)
+            
+            topPath =  animationPath(middleLine.position, endPoint: topPathEndPoint!, controlPoint: CGPointMake(button.bounds.size.width/2 + 20, button.frame.size.height/2 - lineHeight!/2 - 5))
+            bottomPath = animationPath(middleLine.position, endPoint: bottomPathEndPoint!, controlPoint: CGPointMake(button.bounds.size.width/2 - 20, button.frame.size.height/2 + lineHeight!/2 + 5))
+            
+        } else {
+            
+            topPathEndPoint = middleLine.position
+            bottomPathEndPoint = middleLine.position
+            
+            topPath =  animationPath(CGPointMake(button.frame.size.width/2, button.frame.size.height/2 - lineHeight!/2 - 10), endPoint: topPathEndPoint!, controlPoint: CGPointMake(button.bounds.size.width/2 + 20, button.frame.size.height/2 - lineHeight!/2 - 5))
+            
+            bottomPath = animationPath(CGPointMake(button.frame.size.width/2, button.frame.size.height/2 + lineHeight!/2 + 10), endPoint: bottomPathEndPoint!, controlPoint: CGPointMake(button.bounds.size.width/2 - 20, button.frame.size.height/2 + lineHeight!/2 + 5))
+        }
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0.5)
+        CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(controlPoints: 0.4, 0.0, 0.2, 1.0))
+        
+        // animate middle line
+        var middleAnimationRotation = CAKeyframeAnimation(keyPath: "transform.rotation")
+        middleAnimationRotation.values = button.selected ? [ M_PI, 0 ] : [ 0, M_PI]
+        
+        var middleAnimationScale = CAKeyframeAnimation(keyPath: "transform.scale.x")
+        middleAnimationScale.values = button.selected ? [ 0.1, 1 ] : [ 1, 0.1 ]
+        
+        middleLine.addAnimation(middleAnimationRotation, forKey: "rotate")
+        middleLine.addAnimation(middleAnimationScale, forKey: "scale")
+        middleLine.setValue(button.selected ? 0 : M_PI, forKeyPath: "transform.rotation")
+        middleLine.setValue(button.selected ? 1 : 0.1, forKeyPath: "transform.scale.x")
+        
+        // animate top line
+        
+        var topAnimationRotation = CAKeyframeAnimation(keyPath: "transform.rotation")
+        topAnimationRotation.values = button.selected ? [ -M_PI*5/4, 0] :[ 0, -M_PI*5/4 ]
+        topAnimationRotation.calculationMode = kCAAnimationCubic
+        topAnimationRotation.keyTimes = [ 0, 0.33, 0.73, 1.0]
+        
+        var topAnimationPosition = CAKeyframeAnimation(keyPath: "position")
+        topAnimationPosition.path = topPath!.CGPath
+        topAnimationPosition.removedOnCompletion = false
+        topAnimationPosition.fillMode = kCAFillModeForwards
+        
+        topLine.addAnimation(topAnimationPosition, forKey: "animation")
+        topLine.addAnimation(topAnimationRotation, forKey: "animation2")
+        topLine.setValue(button.selected ? 0 : -M_PI*5/4, forKeyPath: "transform.rotation")
+        
+        
+        // animate bottom line
+        
+        var bottomAnimationRotation = CAKeyframeAnimation(keyPath: "transform.rotation")
+        bottomAnimationRotation.values = button.selected ? [ M_PI*5/4, 0 ] : [ 0, M_PI*5/4]
+        bottomAnimationRotation.calculationMode = kCAAnimationCubic
+        bottomAnimationRotation.keyTimes = [ 0, 0.33, 0.73, 1.0]
+        
+        var bottomAnimationPosition = CAKeyframeAnimation(keyPath: "position")
+        bottomAnimationPosition.path = bottomPath!.CGPath
+        bottomAnimationPosition.removedOnCompletion = false
+        bottomAnimationPosition.fillMode = kCAFillModeForwards
+        
+        bottomLine.addAnimation(bottomAnimationPosition, forKey: "animation")
+        bottomLine.addAnimation(bottomAnimationRotation, forKey: "animation2")
+        bottomLine.setValue(button.selected ? 0 : M_PI*5/4, forKeyPath: "transform.rotation")
+        
+        CATransaction.commit()
+        
+        button.selected = !button.selected
     }
 }

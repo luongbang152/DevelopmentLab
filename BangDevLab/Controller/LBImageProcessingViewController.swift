@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GPUImage
 
 class LBImageProcessingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -24,49 +23,50 @@ class LBImageProcessingViewController: UIViewController, UIImagePickerController
         super.viewDidLoad()
     }
     
-    @IBAction func filterA(sender: AnyObject) {
-        
-        if originImage {
-            
-            var imageSource = GPUImagePicture(image: originImage)
-            var imageFilter = GPUImageSepiaFilter()
-            
-            imageSource.addTarget(imageFilter)
-            imageFilter.useNextFrameForImageCapture()
-            imageSource.processImage()
-            
-            imageView.image = imageFilter.imageFromCurrentFramebuffer()
-        }
-    }
-    
-    @IBAction func filterB(sender: AnyObject) {
-        
-        if originImage {
-            
-            var imageFilter = GPUImagePixellateFilter()
-            imageView.image = imageFilter.imageByFilteringImage(originImage)
-        }
-    }
-    
-    @IBAction func filterC(sender: AnyObject) {
-        
-        if originImage {
-            
-            var imageFilter = GPUImageSketchFilter()
-            imageView.image = imageFilter.imageByFilteringImage(originImage)
-        }
-    }
-    
-    @IBAction func filterD(sender: AnyObject) {
-        
-        if originImage {
-            
-            var imageFilter = GPUImageThresholdSketchFilter()
-            imageView.image = imageFilter.imageByFilteringImage(originImage)
-        }
-    }
+//    @IBAction func filterA(sender: AnyObject) {
+//        
+//        if originImage {
+//            
+//            var imageSource = GPUImagePicture(image: originImage)
+//            var imageFilter = GPUImageSepiaFilter()
+//            
+//            imageSource.addTarget(imageFilter)
+//            imageFilter.useNextFrameForImageCapture()
+//            imageSource.processImage()
+//            
+//            imageView.image = imageFilter.imageFromCurrentFramebuffer()
+//        }
+//    }
+//    
+//    @IBAction func filterB(sender: AnyObject) {
+//        
+//        if originImage {
+//            
+//            var imageFilter = GPUImagePixellateFilter()
+//            imageView.image = imageFilter.imageByFilteringImage(originImage)
+//        }
+//    }
+//    
+//    @IBAction func filterC(sender: AnyObject) {
+//        
+//        if originImage {
+//            
+//            var imageFilter = GPUImageSketchFilter()
+//            imageView.image = imageFilter.imageByFilteringImage(originImage)
+//        }
+//    }
+//    
+//    @IBAction func filterD(sender: AnyObject) {
+//        
+//        if originImage {
+//            
+//            var imageFilter = GPUImageThresholdSketchFilter()
+//            imageView.image = imageFilter.imageByFilteringImage(originImage)
+//        }
+//    }
     
     @IBAction func selectPhoto(sender: AnyObject) {
+        
         var alert = UIAlertController(title: "Select Source", message: "Please select where to pick image", preferredStyle: UIAlertControllerStyle.ActionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default, handler: { (alert: UIAlertAction!) in
             
@@ -97,6 +97,7 @@ class LBImageProcessingViewController: UIViewController, UIImagePickerController
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
+
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
